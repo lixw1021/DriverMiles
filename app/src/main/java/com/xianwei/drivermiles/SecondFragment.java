@@ -3,60 +3,61 @@ package com.xianwei.drivermiles;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SecondFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class SecondFragment extends Fragment {
+
+    @BindView(R.id.pieChart)
+    PieChart pieChart;
 
     public SecondFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SecondFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SecondFragment newInstance(String param1, String param2) {
-        SecondFragment fragment = new SecondFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        Log.i("12345", "newInstance:2222 ");
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-        Log.i("12345", "newInstance:2222 ");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        View view = inflater.inflate(R.layout.fragment_second, container, false);
+        ButterKnife.bind(this, view);
+        initialPieChart();
+        return view;
+
     }
 
+    private void initialPieChart() {
+        List<PieEntry> entries = new ArrayList<>();
+
+        entries.add(new PieEntry(30 / 100f, "Ecuador"));
+        entries.add(new PieEntry(10 / 100f, "Brasil"));
+        entries.add(new PieEntry(10 / 100f, "Argentina"));
+        entries.add(new PieEntry(9 / 100f, "Peru"));
+        entries.add(new PieEntry(8 / 100f, "Colombia"));
+        entries.add(new PieEntry(8 / 100f, "Boilvia"));
+        entries.add(new PieEntry(25 / 100f, "Others"));
+
+        PieDataSet set = new PieDataSet(entries, "Election Results");
+        set.setColors(new int[]{R.color.red, R.color.purple, R.color.darkPurple, R.color.darkBlue, R.color.lightBlue, R.color.green, R.color.yellow}, getActivity());
+        PieData data = new PieData(set);
+        pieChart.setData(data);
+
+
+        pieChart.invalidate(); // refresh
+    }
 }

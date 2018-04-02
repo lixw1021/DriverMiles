@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_third_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/layout_third_fragment"
     tools:context="com.xianwei.drivermiles.ThirdFragment">
 
     <FrameLayout
@@ -72,10 +72,41 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:id="@+id/layout_flight_up"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:layout_marginBottom="120dp"
+        android:layout_above="@id/layout_flight"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SVO"
+            android:textColor="#000000"
+            android:textSize="60sp" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_flight_takeoff_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ICN"
+            android:textColor="#000000"
+            android:textSize="60sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/layout_flight"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="horizontal">
@@ -86,12 +117,13 @@
             android:text="SVO"
             android:textColor="#000000"
             android:textSize="60sp" />
+
         <ImageView
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_flight_takeoff_black_24dp"/>
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_flight_takeoff_black_24dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -105,18 +137,92 @@
         android:id="@+id/text_route"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
-        android:textSize="25sp"
-        android:text="EN ROUTE"/>
+        android:gravity="center"
+        android:text="EN ROUTE"
+        android:textSize="25sp" />
+
+    <!--<include-->
+    <!--layout="@layout/fragment_sublist"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_marginBottom="55dp"-->
+    <!--android:visibility="invisible" />-->
 
     <include
-        layout="@layout/fragment_sublist"
+        android:id="@+id/item1"
+        layout="@layout/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/item2"
+        android:layout_marginBottom="20dp"
+        android:visibility="invisible" />
+
+    <include
+        android:id="@+id/item2"
+        layout="@layout/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/item3"
+        android:layout_marginBottom="20dp"
+        android:visibility="invisible" />
+
+    <include
+        android:id="@+id/item3"
+        layout="@layout/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/item4"
+        android:layout_marginBottom="20dp"
+        android:visibility="invisible" />
+
+    <include
+        android:id="@+id/item4"
+        layout="@layout/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/item5"
+        android:layout_marginBottom="20dp"
+        android:visibility="invisible" />
+
+    <include
+        android:id="@+id/item5"
+        layout="@layout/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layout_bottom"
+        android:layout_marginBottom="20dp"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="55dp"
-        android:visibility="invisible" />
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_info_outline_black_24dp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_delete_black_24dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_info_outline_black_24dp" />
+    </LinearLayout>
 
 </RelativeLayout>

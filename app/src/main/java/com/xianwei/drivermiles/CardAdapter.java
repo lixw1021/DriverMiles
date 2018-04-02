@@ -42,6 +42,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         holder.imageView.setImageResource(item.getImageSourceId());
         holder.name.setText(item.getItemName());
         holder.subName.setText(item.getSubItemName());
+//        holder.itemView
+//                .animate()
+//                .alpha(1.0f)
+//                .setDuration((position + 1)*300)
+//                .start();
     }
 
     @Override

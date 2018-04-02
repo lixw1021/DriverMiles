@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,12 +22,14 @@ import butterknife.OnClick;
 
 public class ThirdFragment extends Fragment {
 
+    @BindView(R.id.layout_flight)
+    LinearLayout layoutFlight;
     @BindView(R.id.layout_recyclerView)
     LinearLayout layoutRecyclerView;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.layout_third_fragment)
-    LinearLayout layoutParent;
+    RelativeLayout layoutParent;
     @BindView(R.id.layout_infor)
     LinearLayout layoutInfor;
     @BindView(R.id.text_route)
@@ -61,11 +65,11 @@ public class ThirdFragment extends Fragment {
 
     private void initialData() {
         listData = new ArrayList<>();
-        listData.add(new RecyclerviewItemModel(R.drawable.ic_flight_takeoff_black_24dp, "name", "sub"));
-        listData.add(new RecyclerviewItemModel(R.drawable.ic_flight_takeoff_black_24dp, "name", "sub"));
-        listData.add(new RecyclerviewItemModel(R.drawable.ic_flight_takeoff_black_24dp, "name", "sub"));
-        listData.add(new RecyclerviewItemModel(R.drawable.ic_flight_takeoff_black_24dp, "name", "sub"));
-        listData.add(new RecyclerviewItemModel(R.drawable.ic_flight_takeoff_black_24dp, "name", "sub"));
+        listData.add(new RecyclerviewItemModel(R.drawable.ic_flight_takeoff_black_24dp, "MOSCOW", "37 °F"));
+        listData.add(new RecyclerviewItemModel(R.drawable.ic_flight_takeoff_black_24dp, "SEDUL", "57 °F"));
+        listData.add(new RecyclerviewItemModel(R.drawable.ic_flight_takeoff_black_24dp, "AIRBUS A340", ""));
+        listData.add(new RecyclerviewItemModel(R.drawable.ic_access_time_black_24dp, "08H:35M", ""));
+        listData.add(new RecyclerviewItemModel(R.drawable.ic_flight_takeoff_black_24dp, "KOREAN AIRLINES", ""));
     }
 
     @OnClick(R.id.layout_third_fragment)
@@ -74,6 +78,7 @@ public class ThirdFragment extends Fragment {
             hideInforLayout();
             showList();
             hideRouteTv();
+
         } else {
             showInforLayout();
             hideList();
@@ -84,32 +89,40 @@ public class ThirdFragment extends Fragment {
     private void showInforLayout() {
         layoutInfor.setVisibility(View.VISIBLE);
         layoutInfor.animate()
-                .alpha(1.0f).
-                setDuration(300).
-                start();
+                .alpha(1.0f)
+                .setDuration(500)
+                .start();
+        RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams) layoutFlight.getLayoutParams();
+        relativeParams.removeRule(RelativeLayout.ALIGN_PARENT_TOP);
+        relativeParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        layoutFlight.setLayoutParams(relativeParams);
     }
 
     private void hideInforLayout() {
         layoutInfor.setVisibility(View.INVISIBLE);
         layoutInfor.animate()
-                .alpha(0.0f).
-                setDuration(300).
-                start();
+                .alpha(0.0f)
+                .setDuration(500)
+                .start();
+        RelativeLayout.LayoutParams relativeParams = (RelativeLayout.LayoutParams) layoutFlight.getLayoutParams();
+        relativeParams.removeRule(RelativeLayout.CENTER_IN_PARENT);
+        relativeParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        layoutFlight.setLayoutParams(relativeParams);
     }
 
     private void showList() {
         layoutRecyclerView.setVisibility(View.VISIBLE);
         layoutRecyclerView.animate()
-                .alpha(1.0f).
-                setDuration(300)
+                .alpha(1.0f)
+                .setDuration(500)
                 .start();
     }
 
     private void hideList() {
         layoutRecyclerView.setVisibility(View.INVISIBLE);
         layoutRecyclerView.animate()
-                .alpha(0.0f).
-                setDuration(300)
+                .alpha(0.0f)
+                .setDuration(500)
                 .start();
     }
 
@@ -117,7 +130,7 @@ public class ThirdFragment extends Fragment {
         routeTV.setVisibility(View.VISIBLE);
         routeTV.animate()
                 .alpha(1.0f)
-                .setDuration(300)
+                .setDuration(500)
                 .start();
     }
 
@@ -125,7 +138,7 @@ public class ThirdFragment extends Fragment {
         routeTV.setVisibility(View.INVISIBLE);
         routeTV.animate()
                 .alpha(0f)
-                .setDuration(300)
+                .setDuration(500)
                 .start();
     }
 }

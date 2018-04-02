@@ -85,7 +85,7 @@ public class HostActivity extends AppCompatActivity implements AHBottomNavigatio
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // fetch data after grant location permission
-                    fetchLocationEveryOneMin();
+//                    fetchLocationEveryOneMin();
 
                 } else {
                     Toast.makeText(this, "Please enable GPS to use service.", Toast.LENGTH_LONG).show();

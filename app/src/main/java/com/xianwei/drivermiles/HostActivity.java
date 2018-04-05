@@ -116,7 +116,7 @@ public class HostActivity extends AppCompatActivity implements AHBottomNavigatio
                     }
                 });
 
-                handler.postDelayed(this,60000);
+                handler.postDelayed(this,1000*60);
             }
         };
         handler.post(runnable);
